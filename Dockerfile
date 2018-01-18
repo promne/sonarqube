@@ -1,7 +1,8 @@
-FROM jboss/base-jdk:8
+FROM registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift
 
 MAINTAINER Erik Jacobs <erikmjacobs@gmail.com>
 MAINTAINER Siamak Sadeghianfar <siamaksade@gmail.com>
+MAINTAINER Roland Stens (roland.stens@gmail.com)
 
 ENV SONAR_VERSION=6.7.1 \
     SONARQUBE_HOME=/opt/sonarqube \
