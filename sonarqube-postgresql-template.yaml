@@ -3,8 +3,8 @@ kind: Template
 message: 'Login to SonarQube with the default admin user: admin/admin'
 metadata:
   annotations:
-    description: The SonarQube bcgov OpenShift template
-    tags: 'sonarqube'
+    description: The SonarQube OpenShift template
+    tags: 'instant-app,sonarqube'
   name: sonarqube
 objects:
   - apiVersion: v1
@@ -42,12 +42,15 @@ objects:
         name: sonarqube
   - apiVersion: v1
     data:
-      password: YWRtaW4=
       username: YWRtaW4=
     kind: Secret
     metadata:
+      annotations:
+        template.openshift.io/base64-expose-password: '{.data[''password'']}'
       name: sonarqube-admin-password
-    type: kubernetes.io/basic-auth
+    stringData:
+      password: ${SONARQUBE_ADMIN_PASSWORD}
+    type: kubernetes.io/basic-auth    
   - apiVersion: v1
     kind: ImageStream
     metadata:
@@ -61,7 +64,7 @@ objects:
             tags: sonarqube
           from:
             kind: DockerImage
-            name: 'openshift/sonarqube:${SONARQUBE_VERSION}'
+            name: 'openshiftdemos/sonarqube:${SONARQUBE_VERSION}'
           importPolicy: {}
           name: '${SONARQUBE_VERSION}'
   - apiVersion: v1
@@ -284,6 +287,8 @@ objects:
   - apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
+      annotations:
+        volume.beta.kubernetes.io/storage-class: gluster-file
       name: postgresql-sonarqube-data
     spec:
       accessModes:
@@ -294,6 +299,8 @@ objects:
   - apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
+      annotations:
+        volume.beta.kubernetes.io/storage-class: gluster-file
       name: sonarqube-data
     spec:
       accessModes:
@@ -305,19 +312,19 @@ parameters:
   - displayName: SonarQube version
     name: SONARQUBE_VERSION
     required: true
-    value: '6.7.1'
+    value: '6.7'
   - description: Password for SonarQube Server PostgreSQL backend
     displayName: SonarQube's PostgreSQL Password
     from: '[a-zA-Z0-9]{16}'
     generate: expression
     name: POSTGRESQL_PASSWORD
     required: true
-  - description: Password for SonarQube Server Admin
+  - description: Password for SonarQube Admin
     displayName: SonarQube's Admin Password
-    from: '[a-zA-Z0-9]{16}'
+    from: '[a-zA-Z0-9]{8}'
     generate: expression
     name: SONARQUBE_ADMIN_PASSWORD
-    required: true    
+    required: true  
   - description: Volume space available for PostgreSQL
     displayName: PostgreSQL Volume Capacity
     name: POSTGRESQL_VOLUME_CAPACITY
