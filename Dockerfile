@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift
+FROM jboss/base-jdk:8
 
 MAINTAINER Erik Jacobs <erikmjacobs@gmail.com>
 MAINTAINER Siamak Sadeghianfar <siamaksade@gmail.com>
