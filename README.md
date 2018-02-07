@@ -6,7 +6,7 @@ https://github.com/OpenShiftDemos/sonarqube-openshift-docker
 
 # Docker Hub
 
-The SonarQube image is available on the OpenShift Pathfinder Hub:
+The SonarQube image is available on the OpenShift Pathfinder Hub.
 
 # Deploy on OpenShift
 Use the provided template with postgresql database to deploy SonarQube on 
