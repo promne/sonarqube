@@ -10,6 +10,17 @@ ENV SONAR_VERSION=6.7.1 \
     SONARQUBE_JDBC_PASSWORD=sonar \
     SONARQUBE_JDBC_URL=
 
+ENV SUMMARY="SonarQube for bcgov OpenShift" \
+    DESCRIPTION="This image creates the SonarQube image for use at bcgov/OpenShift"
+
+LABEL summary="$SUMMARY" \
+      description="$DESCRIPTION" \
+      io.k8s.description="$DESCRIPTION" \
+      io.k8s.display-name="sonarqube" \
+      io.openshift.expose-services="9000:http" \
+      io.openshift.tags="sonarqube" \
+      release="$SONAR_VERSION"
+
 USER root
 EXPOSE 9000
 ADD root /
