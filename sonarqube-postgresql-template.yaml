@@ -3,8 +3,8 @@ kind: Template
 message: 'Login to SonarQube with the default admin user: admin/admin'
 metadata:
   annotations:
-    description: The SonarQube OpenShift template
-    tags: 'instant-app,sonarqube'
+    description: The SonarQube bcgov OpenShift template
+    tags: 'sonarqube'
   name: sonarqube
 objects:
   - apiVersion: v1
@@ -312,6 +312,12 @@ parameters:
     generate: expression
     name: POSTGRESQL_PASSWORD
     required: true
+  - description: Password for SonarQube Server Admin
+    displayName: SonarQube's Admin Password
+    from: '[a-zA-Z0-9]{16}'
+    generate: expression
+    name: SONARQUBE_ADMIN_PASSWORD
+    required: true    
   - description: Volume space available for PostgreSQL
     displayName: PostgreSQL Volume Capacity
     name: POSTGRESQL_VOLUME_CAPACITY
