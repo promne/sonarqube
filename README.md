@@ -8,6 +8,9 @@ https://github.com/OpenShiftDemos/sonarqube-openshift-docker
 
 The SonarQube image is available on the OpenShift Pathfinder Hub.
 The DockerFile in this directory has been used to build that image. **You do not have to repeat this!**
+If you are the one that needs to install the image, execute the following on an oc-enabled machine after you have logged in to your project:
+
+    oc new-build https://github.com/BCDevOps/sonarqube --name=sonarqube --to=sonarqube:6.7.1
 
 # Deploy on OpenShift
 Use the provided template with postgresql database to deploy SonarQube on 
