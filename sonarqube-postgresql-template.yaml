@@ -64,7 +64,7 @@ objects:
             tags: sonarqube
           from:
             kind: DockerImage
-            name: 'openshiftdemos/sonarqube:${SONARQUBE_VERSION}'
+            name: 'openshift/sonarqube:${SONARQUBE_VERSION}'
           importPolicy: {}
           name: '${SONARQUBE_VERSION}'
   - apiVersion: v1
@@ -312,7 +312,7 @@ parameters:
   - displayName: SonarQube version
     name: SONARQUBE_VERSION
     required: true
-    value: '6.7'
+    value: '6.7.1'
   - description: Password for SonarQube Server PostgreSQL backend
     displayName: SonarQube's PostgreSQL Password
     from: '[a-zA-Z0-9]{16}'
