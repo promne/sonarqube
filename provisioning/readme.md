@@ -2,6 +2,6 @@
 
 Run the
 
-  updatesqadminpw.sh 
+    updatesqadminpw.sh 
 
 script on Linux or Mac with OC Client Tools installed.
