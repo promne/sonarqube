@@ -20,6 +20,8 @@ SonarQube with PostgreSQL Database:
 
     oc new-app -f sonarqube-postgresql-template.yaml --param=SONARQUBE_VERSION=6.7.1
  
+## Attention: ##
+
 After you have established that SonarQube is up and running to have to run the update script in the provisioning directory. This script will use the randomly generated SonarQube Admin password from the secret and update the SonarQube admin password.
 
 To run this script, you need to have the [oc client tools installed](https://www.openshift.org/download.html) and you should be able to run bash scripts.
