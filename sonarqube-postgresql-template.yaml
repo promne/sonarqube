@@ -175,7 +175,6 @@ objects:
               name: 'sonarqube:${SONARQUBE_VERSION}'
               namespace: openshift
           type: ImageChange
-		- type: ConfigChange
   - apiVersion: v1
     kind: Service
     metadata:
