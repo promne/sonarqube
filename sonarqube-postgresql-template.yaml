@@ -173,7 +173,9 @@ objects:
             from:
               kind: ImageStreamTag
               name: 'sonarqube:${SONARQUBE_VERSION}'
+              namespace: openshift
           type: ImageChange
+		- type: ConfigChange
   - apiVersion: v1
     kind: Service
     metadata:
@@ -335,4 +337,4 @@ parameters:
     name: SONAR_VOLUME_CAPACITY
     required: true
     value: 5Gi
-    
+   
