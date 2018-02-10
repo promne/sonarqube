@@ -131,10 +131,10 @@ objects:
                 timeoutSeconds: 5
               resources:
                 limits:
-                  cpu: 1
+                  cpu: 100m
                   memory: 4Gi
                 requests:
-                  cpu: 300m
+                  cpu: 10m
                   memory: 1.5Gi
               terminationMessagePath: /dev/termination-log
           dnsPolicy: ClusterFirst
@@ -253,11 +253,11 @@ objects:
                 timeoutSeconds: 1
               resources:
                 limits:
-                  cpu: 1
-                  memory: 4Gi
-                requests:
-                  cpu: 250m
+                  cpu: 100m
                   memory: 256Mi
+                requests:
+                  cpu: 10m
+                  memory: 100Mi
               securityContext:
                 capabilities: {}
                 privileged: false
