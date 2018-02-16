@@ -131,11 +131,11 @@ objects:
                 timeoutSeconds: 5
               resources:
                 limits:
-                  cpu: 500m
+                  cpu: 1
                   memory: 4Gi
                 requests:
-                  cpu: 100m
-                  memory: 1.5Gi
+                  cpu: 500m
+                  memory: 2Gi
               terminationMessagePath: /dev/termination-log
           dnsPolicy: ClusterFirst
           restartPolicy: Always
@@ -152,16 +152,14 @@ objects:
               name: sonar-temp
               subPath: temp
             - mountPath: /opt/sonarqube/extensions/plugins
-              name: sonar-plugins
+              name: sonar-data
               subPath: plugins
           volumes:
-            - emptyDir: {}
-              name: sonar-data
             - emptyDir: {}
               name: sonar-logs
             - emptyDir: {}
               name: sonar-temp
-            - name: sonar-plugins
+            - name: sonar-data
               persistentVolumeClaim:
                 claimName: sonarqube-data
       triggers:
@@ -253,10 +251,10 @@ objects:
                 timeoutSeconds: 1
               resources:
                 limits:
-                  cpu: 100m
+                  cpu: 2500m
                   memory: 256Mi
                 requests:
-                  cpu: 10m
+                  cpu: 100m
                   memory: 100Mi
               securityContext:
                 capabilities: {}
