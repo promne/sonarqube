@@ -44,6 +44,8 @@ objects:
     data:
       username: YWRtaW4=
     kind: Secret
+    labels:
+        app: sonarqube
     metadata:
       annotations:
         template.openshift.io/base64-expose-password: '{.data[''password'']}'
@@ -286,6 +288,8 @@ objects:
   - apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
+      labels:
+        app: sonarqube
       annotations:
         volume.beta.kubernetes.io/storage-class: gluster-file
       name: postgresql-sonarqube-data
@@ -298,6 +302,8 @@ objects:
   - apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
+      labels:
+        app: sonarqube
       annotations:
         volume.beta.kubernetes.io/storage-class: gluster-file
       name: sonarqube-data
