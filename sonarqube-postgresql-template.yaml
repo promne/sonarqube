@@ -109,17 +109,17 @@ objects:
                   value: sonar
               volumeMounts:
                 - mountPath: /opt/sonarqube/data
-                name: sonar-data
-                subPath: data
+                  name: sonar-data
+                  subPath: data
                 - mountPath: /opt/sonarqube/logs
-                name: sonar-logs
-                subPath: logs
+                  name: sonar-logs
+                  subPath: logs
                 - mountPath: /opt/sonarqube/temp
-                name: sonar-temp
-                subPath: temp
+                  name: sonar-temp
+                  subPath: temp
                 - mountPath: /opt/sonarqube/extensions/plugins
-                name: sonar-data
-                subPath: plugins      
+                  name: sonar-data
+                  subPath: plugins      
               image: ' '
               imagePullPolicy: IfNotPresent
               livenessProbe:
