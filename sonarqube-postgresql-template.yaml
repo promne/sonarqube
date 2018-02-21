@@ -107,6 +107,19 @@ objects:
                   value: 'jdbc:postgresql://postgresql-sonarqube/sonar'
                 - name: SONARQUBE_JDBC_USERNAME
                   value: sonar
+              volumeMounts:
+                - mountPath: /opt/sonarqube/data
+                name: sonar-data
+                subPath: data
+                - mountPath: /opt/sonarqube/logs
+                name: sonar-logs
+                subPath: logs
+                - mountPath: /opt/sonarqube/temp
+                name: sonar-temp
+                subPath: temp
+                - mountPath: /opt/sonarqube/extensions/plugins
+                name: sonar-data
+                subPath: plugins      
               image: ' '
               imagePullPolicy: IfNotPresent
               livenessProbe:
@@ -143,19 +156,6 @@ objects:
           restartPolicy: Always
           securityContext: {}
           terminationGracePeriodSeconds: 30
-          volumeMounts:
-            - mountPath: /opt/sonarqube/data
-              name: sonar-data
-              subPath: data
-            - mountPath: /opt/sonarqube/logs
-              name: sonar-logs
-              subPath: logs
-            - mountPath: /opt/sonarqube/temp
-              name: sonar-temp
-              subPath: temp
-            - mountPath: /opt/sonarqube/extensions/plugins
-              name: sonar-data
-              subPath: plugins
           volumes:
             - emptyDir: {}
               name: sonar-logs
