@@ -118,7 +118,7 @@ objects:
                   name: sonar-temp
                   subPath: temp
                 - mountPath: /opt/sonarqube/extensions/plugins
-                  name: sonar-data
+                  name: sonar-plugins
                   subPath: plugins      
               image: ' '
               imagePullPolicy: IfNotPresent
@@ -158,10 +158,12 @@ objects:
           terminationGracePeriodSeconds: 30
           volumes:
             - emptyDir: {}
+              name: sonar-data
+            - emptyDir: {}
               name: sonar-logs
             - emptyDir: {}
               name: sonar-temp
-            - name: sonar-data
+            - name: sonar-plugins
               persistentVolumeClaim:
                 claimName: sonarqube-data
       triggers:
