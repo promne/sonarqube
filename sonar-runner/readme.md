@@ -23,7 +23,7 @@ References:
 ===========
 Logging:
 * https://docs.gradle.org/current/userguide/logging.html
-  (add -i or --info to gradelw execution to see stdout during execution)
+  (add -i or --info to gradlew execution to see stdout during execution)
 * https://stackoverflow.com/questions/3963708/gradle-how-to-display-test-results-in-the-console-in-real-time
 
 Code to dispaly test results on stdout during execution to be added to gradle.build:
