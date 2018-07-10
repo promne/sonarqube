@@ -25,3 +25,12 @@ SonarQube with PostgreSQL Database:
 After you have established that SonarQube is up and running to have to run the update script in the [**provisioning directory**](https://github.com/BCDevOps/sonarqube/tree/master/provisioning). This script will use the randomly generated SonarQube Admin password from the secret and update the SonarQube admin password.
 
 To run this script, you need to have the [oc client tools installed](https://docs.openshift.com/container-platform/3.6/cli_reference/get_started_cli.html or https://www.openshift.org/download.html) and you should be able to run bash scripts.
+
+## GutHub Authentication ##
+
+Please note the GitHub auth plugin requirements (from Configuration -> General Settings -> GitHub) are:
+
+* SonarQube must be publicly accessible through HTTPS only
+* The property 'sonar.core.serverBaseURL' must be set to this public HTTPS URL
+* In teh GitHub profile for the org, you need to create a Developer Application for which the 'Authorization callback URL' must be set to '/oauth2/callback'.
+
