@@ -38,7 +38,7 @@ Logon to your `tools` project and run the following command from the [provisioni
 To login to your SonarQube server as admin, browse to the **sonarqube-admin-password** secret in your OpenShift `tools` project, reveal the password and use it to login.
 
 ## Congratulations - You now have a running SonarQube server instance
-You can now browse your SonarQube server site.  To find the link, browse to the overview of your `tools` project using the OpenShift console and click on the url for the **SonarQube Application**.
+You can now browse your SonarQube server site.  To find the link, browse to the overview of your `tools` project using the OpenShift console and click on the URL for the **SonarQube Application**.
 
 ## Optional GitHub Authentication
 
@@ -72,7 +72,7 @@ An example Jenkins file [SonarQube-StaticScan-Jenkinsfile](./jenkins/SonarQube-S
 - Wire the pipeline up to a GitHub Webhook.
 
 ## Congratulations - You have integrated static code scanning into your project
-You can now browse your project report on the SonarQube server site.  To find the link, browse to the overview of your `tools` project using the OpenShift console and click on the url for the **SonarQube Application**.
+You can now browse your project report on the SonarQube server site.  To find the link, browse to the overview of your `tools` project using the OpenShift console and click on the URL for the **SonarQube Application**.
 
 ## Next Steps:
 
@@ -80,15 +80,15 @@ You can now browse your project report on the SonarQube server site.  To find th
 Now that you have static scanning, you'll probably notice your code coverage results are at 0% since no unit tests are being executed during the scan.  You'll likely what to integrate unit tests into the scans so you get code coverage metrics to help you determine how well you are testing your code.  **As you journey down this road, please contribute your experience back to this project to make it better for the whole community.**
 
 ### Quality Badges
-Now that you are scanning your code you can publish the summary of the results using badges in your project's top level ReadMe file.
+Now that you are scanning your code you can publish the summary of the results using badges in your project's top-level ReadMe file.
 
 For SonarQube versions <7.1 you will need to use the [SVG Badges](https://github.com/QualInsight/qualinsight-plugins-sonarqube-badges) plug-in.  From SonarQube 7.1 such badges are available from the platform without a plugin.
 
-To install the the [SVG Badges](https://github.com/QualInsight/qualinsight-plugins-sonarqube-badges) plug-in:
+To install the [SVG Badges](https://github.com/QualInsight/qualinsight-plugins-sonarqube-badges) plug-in:
 - Logon to your SonarQube server as an `admin`.
 - Under Administration -> Marketplace, search for `SVG` and install the **SVG Badges** plug-in.
 
-# Referances
+# References
 - [SonarQube](https://www.sonarqube.org/)
 
 
