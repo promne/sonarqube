@@ -58,6 +58,8 @@ Gradle in combination with the `SonarQube` gradle plug-in are used to perform th
 
 Add the [sonar-runner](./sonar-runner) directory to your project.  The defaults in [build.gradle](./sonar-runner/build.gradle) assume the [sonar-runner](./sonar-runner) directory is a top level directory within your project, but it does not have to be.  You can easily override the defaults by setting the appropriate properties within the [Jenkinsfile](./jenkins/SonarQube-StaticScan-Jenkinsfile) described in the next section.
 
+For more information about scanning with Gradle, refer to the [Scanning with Gradle](./docs/scanning-with-gradle.md) document.
+
 ## Add the Jenkins pipeline script to your project
 An example Jenkins file [SonarQube-StaticScan-Jenkinsfile](./jenkins/SonarQube-StaticScan-Jenkinsfile) is provided in this project.  It performs static SonarQube scanning of your project's code.  It uses a purpose built Jenkins slave image, which is already available in the BCGov OpenShift pathfinder environment, along with the [sonar-runner](./sonar-runner) scripts described in the previous section, to run the scans.
 
