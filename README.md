@@ -22,7 +22,7 @@ Logon to your `tools` project and run the following command:
     oc new-build https://github.com/BCDevOps/SonarQube --name=SonarQube --to=SonarQube:6.7.1
 
 ## Deploy on OpenShift
-The [SonarQube-postgresql-template](./SonarQube-postgresql-template.yaml) has been provided to allow you to quickly and easily deploy a fully functional instance of the SonarQube server, complete with persistent storage, into your `tools` project.  The template will create all of the necessary resources for you.
+The [SonarQube-postgresql-template](./sonarqube-postgresql-template.yaml) has been provided to allow you to quickly and easily deploy a fully functional instance of the SonarQube server, complete with persistent storage, into your `tools` project.  The template will create all of the necessary resources for you.
 
 Logon to your `tools` project and run the following command:
 
