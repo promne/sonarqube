@@ -91,6 +91,11 @@ To install the the [SVG Badges](https://github.com/QualInsight/qualinsight-plugi
 # Referances
 - [SonarQube](https://www.sonarqube.org/)
 
+
+# Tips and Tricks
+
+- [Troubleshooting Jenkins Slave Startup Issues](./docs/troubleshooting-jenkins-slave-startup-issues.md)
+
 # Getting Help or Reporting an Issue
 To report bugs/issues/feature requests, please file an [issue](../../issues).
 
