@@ -1,36 +1,51 @@
 # SonarQube on OpenShift
-This repo contains all of the resources required to deploy SonarQube at bcgov OpenShift pathfinder.
+This repository contains all of the resources required to deploy a SonarQube server instance into a BCGov OpenShift pathfinder environment, and integrate SonarQube scanning into your Jenkins pipeline.
 
-It is inspired by the OpenShift Demos SonarQube for OpenShift:
+This work was inspired by the OpenShift Demos SonarQube for OpenShift:
 https://github.com/OpenShiftDemos/sonarqube-openshift-docker
 
-# Docker Hub
+There are two parts to SonarQube, the server, and the scanner.  You deploy the server once and it analyses and hosts the scanning results posted by the scanner.  You integrate the scanner into your builds/pipelines to perform code analysis and then post the results to the server.  The server then provides summaries and live drill down reports of the results.
 
-The SonarQube image is available on the OpenShift Pathfinder Hub.
-The DockerFile in this directory has been used to build that image. **You do not have to repeat this!**
-If you are the one that needs to install the image, execute the following on an oc-enabled machine after you have logged in to your project:
+These instructions assume:
+* You have Git and the OpenShift CLI installed on your system, and they are functioning correctly.  The recommended approach is to use either [Homebrew](https://brew.sh/) (MAC) or [Chocolatey](https://chocolatey.org/) (Windows) to install the required packages.
+* You have forked and cloned a local working copy of the project source code.
+* You are using a reasonable shell.  A "reasonable shell" is obvious on Linux and Mac, and is assumed to be the git-bash shell on Windows.
+
+# SonarQube Server
+
+## Docker Build
+The SonarQube server image (`openshift/sonarqube:6.7.1`) is already available in the OpenShift Pathfinder image repository, so **you do not have to repeat this step** unless you are building a customized or updated version of the SonarQube Server.
+
+Logon to your `tools` project and run the following command:
 
     oc new-build https://github.com/BCDevOps/sonarqube --name=sonarqube --to=sonarqube:6.7.1
 
-# Deploy on OpenShift
-Use the provided template with postgresql database to deploy SonarQube on 
-OpenShift. This template will create all the necessary components (storage, postgresql, pods, services, route and secrets etc.) and will start SonarQube.
+## Deploy on OpenShift
+The [sonarqube-postgresql-template](./sonarqube-postgresql-template.yaml) has been provided to allow you to quickly and easily deploy a fully functional instance of the SonarQube server, complete with persistent storage, into your `tools` project.  The template will create all of the necessary resources for you.
 
-SonarQube with PostgreSQL Database:
+Logon to your `tools` project and run the following command:
 
     oc new-app -f sonarqube-postgresql-template.yaml --param=SONARQUBE_VERSION=6.7.1
  
-## Attention: ##
+## Change the Default Admin Password
+When the SonarQube server is first deployed it is using a default `admin` password.  For security, it is **highly** recommended you change it.  The [UpdateSqAdminPw](./provisioning/updatesqadminpw.sh) script has been provided to make this easy.  The script will generate a random password, store it in an OpenShift secret named `sonarqube-admin-password`, and update the admin password of the SonarQube server instance.
 
-After you have established that SonarQube is up and running to have to run the update script in the [**provisioning directory**](https://github.com/BCDevOps/sonarqube/tree/master/provisioning). This script will use the randomly generated SonarQube Admin password from the secret and update the SonarQube admin password.
+Logon to your `tools` project and run the following command from the [provisioning](./provisioning) directory:
 
-To run this script, you need to have the [oc client tools installed](https://docs.openshift.com/container-platform/3.6/cli_reference/get_started_cli.html or https://www.openshift.org/download.html) and you should be able to run bash scripts.
+    updatesqadminpw.sh 
 
-## GutHub Authentication ##
+To login to your SonarQube server as admin, browse to the **sonarqube-admin-password** secret in your OpenShift `tools` project, reveal the password and use it to login.
 
-Please note the GitHub auth plugin requirements (from Configuration -> General Settings -> GitHub) are:
+## Congratulations - You now have a running SonarQube server instance
+You can now browse your SonarQube server site.  To find the link, browse to the overview of your `tools` project using the OpenShift console and click on the url for the **SonarQube Application**.
+
+## Optional GitHub Authentication
+
+The GitHub authentication plug-in requirements are:
 
 * SonarQube must be publicly accessible through HTTPS only
 * The property 'sonar.core.serverBaseURL' must be set to this public HTTPS URL
-* In teh GitHub profile for the org, you need to create a Developer Application for which the 'Authorization callback URL' must be set to '/oauth2/callback'.
+* In the GitHub profile for the org, you need to create a Developer Application for which the 'Authorization callback URL' must be set to '/oauth2/callback'.
+
+*The settings can be found under Administration -> Configuration -> General Settings -> GitHub)*
 
