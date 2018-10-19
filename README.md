@@ -2,7 +2,7 @@
 This repository contains all of the resources required to deploy a SonarQube server instance into a BCGov OpenShift pathfinder environment, and integrate SonarQube scanning into your Jenkins pipeline.
 
 This work was inspired by the OpenShift Demos SonarQube for OpenShift:
-https://github.com/OpenShiftDemos/SonarQube-openshift-docker
+https://github.com/OpenShiftDemos/sonarqube-openshift-docker
 
 There are two parts to SonarQube, the server, and the scanner.  You deploy the server once and it analyses and hosts the scanning results posted by the scanner.  You integrate the scanner into your builds/pipelines to perform code analysis and then post the results to the server.  The server then provides summaries and live drill down reports of the results.
 
@@ -15,27 +15,27 @@ These instructions assume:
 The following instructions describe how to build and deploy a SonarQube server instance for your project.  The build step is optional since images are already available.
 
 ## Building the SonarQube Server Image
-The SonarQube server image (`openshift/SonarQube:6.7.1`) is already available in the OpenShift Pathfinder image repository, so **you do not have to repeat this step** unless you are building a customized or updated version of the SonarQube Server.
+The SonarQube server image (`openshift/sonarqube:6.7.1`) is already available in the OpenShift Pathfinder image repository, so **you do not have to repeat this step** unless you are building a customized or updated version of the SonarQube Server.
 
 Logon to your `tools` project and run the following command:
 
-    oc new-build https://github.com/BCDevOps/SonarQube --name=SonarQube --to=SonarQube:6.7.1
+    oc new-build https://github.com/BCDevOps/sonarqube --name=sonarqube --to=sonarqube:6.7.1
 
 ## Deploy on OpenShift
 The [sonarqube-postgresql-template](./sonarqube-postgresql-template.yaml) has been provided to allow you to quickly and easily deploy a fully functional instance of the SonarQube server, complete with persistent storage, into your `tools` project.  The template will create all of the necessary resources for you.
 
 Logon to your `tools` project and run the following command:
 
-    oc new-app -f SonarQube-postgresql-template.yaml --param=SonarQube_VERSION=6.7.1
+    oc new-app -f sonarqube-postgresql-template.yaml --param=SONARQUBE_VERSION=6.7.1
  
 ## Change the Default Admin Password
-When the SonarQube server is first deployed it is using a default `admin` password.  For security, it is **highly** recommended you change it.  The [UpdateSqAdminPw](./provisioning/updatesqadminpw.sh) script has been provided to make this easy.  The script will generate a random password, store it in an OpenShift secret named `SonarQube-admin-password`, and update the admin password of the SonarQube server instance.
+When the SonarQube server is first deployed it is using a default `admin` password.  For security, it is **highly** recommended you change it.  The [UpdateSqAdminPw](./provisioning/updatesqadminpw.sh) script has been provided to make this easy.  The script will generate a random password, store it in an OpenShift secret named `sonarqube-admin-password`, and update the admin password of the SonarQube server instance.
 
 Logon to your `tools` project and run the following command from the [provisioning](./provisioning) directory:
 
     updatesqadminpw.sh 
 
-To login to your SonarQube server as admin, browse to the **SonarQube-admin-password** secret in your OpenShift `tools` project, reveal the password and use it to login.
+To login to your SonarQube server as admin, browse to the **sonarqube-admin-password** secret in your OpenShift `tools` project, reveal the password and use it to login.
 
 ## Congratulations - You now have a running SonarQube server instance
 You can now browse your SonarQube server site.  To find the link, browse to the overview of your `tools` project using the OpenShift console and click on the url for the **SonarQube Application**.
@@ -54,7 +54,7 @@ The GitHub authentication plug-in requirements are:
 The following instructions describe how to quickly integrate static SonarQube scanning into your Jenkins pipeline.
 
 ## Add the scanner scripts to your project
-Gradle in combination with the `SonarQube` gradle plug-in are used to perform the scanning.  A complete gradle environment and a generic [build.gradle](./sonar-runner/build.gradle) file are provided in the [sonar-runner](./sonar-runner) directory of this project.  These scripts will be used by the Jenkins pipeline script to run SonarQube scans of your code.
+Gradle in combination with the `sonarqube` gradle plug-in are used to perform the scanning.  A complete gradle environment and a generic [build.gradle](./sonar-runner/build.gradle) file are provided in the [sonar-runner](./sonar-runner) directory of this project.  These scripts will be used by the Jenkins pipeline script to run SonarQube scans of your code.
 
 Add the [sonar-runner](./sonar-runner) directory to your project.  The defaults in [build.gradle](./sonar-runner/build.gradle) assume the [sonar-runner](./sonar-runner) directory is a top level directory within your project, but it does not have to be.  You can easily override the defaults by setting the appropriate properties within the [Jenkinsfile](./jenkins/SonarQube-StaticScan-Jenkinsfile) described in the next section.
 
@@ -95,10 +95,9 @@ To install the the [SVG Badges](https://github.com/QualInsight/qualinsight-plugi
 To report bugs/issues/feature requests, please file an [issue](../../issues).
 
 # How to Contribute
+If you have found this project helpful, please contribute back to the project as you find new and better ways to use SonarQube in your projects.
+
 If you would like to contribute, please see our [CONTRIBUTING](./CONTRIBUTING.md) guidelines.
 
 Please note that this project is released with a [Contributor Code of Conduct](./CODE_OF_CONDUCT.md). 
 By participating in this project you agree to abide by its terms.
-
-
-
