@@ -4,7 +4,7 @@ MAINTAINER Erik Jacobs <erikmjacobs@gmail.com>
 MAINTAINER Siamak Sadeghianfar <siamaksade@gmail.com>
 MAINTAINER Roland Stens (roland.stens@gmail.com)
 
-ENV SONAR_VERSION=6.7.1 \
+ENV SONAR_VERSION=6.7.5 \
     SONARQUBE_HOME=/opt/sonarqube \
     SONARQUBE_JDBC_USERNAME=sonar \
     SONARQUBE_JDBC_PASSWORD=sonar \
@@ -27,16 +27,8 @@ ADD root /
 
 RUN set -x \
 
-    # pub   2048R/D26468DE 2015-05-25
-    #       Key fingerprint = F118 2E81 C792 9289 21DB  CAB4 CFCA 4A29 D264 68DE
-    # uid                  sonarsource_deployer (Sonarsource Deployer) <infra@sonarsource.com>
-    # sub   2048R/06855C1D 2015-05-25
-    # && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys F1182E81C792928921DBCAB4CFCA4A29D26468DE \
-
     && cd /opt \
-    && curl -o sonarqube.zip -fSL https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-$SONAR_VERSION.zip \
-    # && curl -o sonarqube.zip.asc -fSL https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-$SONAR_VERSION.zip.asc \
-    # && gpg --batch --verify sonarqube.zip.asc sonarqube.zip \
+    && curl -o sonarqube.zip -fSL https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-$SONAR_VERSION.zip \
     && unzip sonarqube.zip \
     && mv sonarqube-$SONAR_VERSION sonarqube \
     && rm sonarqube.zip* \
