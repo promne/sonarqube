@@ -14,6 +14,11 @@ These instructions assume:
 # SonarQube Server
 The following instructions describe how to build and deploy a SonarQube server instance for your project.  The build step is optional since images are already available.
 
+## SonarQube Server Images
+
+SonarQube server images are now available on DockerHub:
+- [bcgovimages/sonarqube](https://hub.docker.com/r/bcgovimages/sonarqube/)
+
 ## Building the SonarQube Server Image
 The SonarQube server image (`openshift/sonarqube:6.7.1`) is already available in the OpenShift Pathfinder image repository, so **you do not have to repeat this step** unless you are building a customized or updated version of the SonarQube Server.
 
