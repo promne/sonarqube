@@ -106,6 +106,10 @@ Now that you are scanning your code you can publish the summary of the results u
 
 For SonarQube versions <7.1 you will need to use the [SVG Badges](https://github.com/QualInsight/qualinsight-plugins-sonarqube-badges) plug-in, which is bundled in the `bcgovimages/sonarqube:6.7.5` image.  Starting with SonarQube 7.1, badges are available from the platform without a plugin.
 
+# Examples
+
+[TheOrgBook](https://github.com/bcgov/TheOrgBook) provides an example of the concepts outlined here, and demonstrates the use of static code scanning, ZAP report integration, and quality badges.
+
 # References
 - [SonarQube](https://www.sonarqube.org/)
 
