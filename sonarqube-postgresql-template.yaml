@@ -66,7 +66,7 @@ objects:
             tags: sonarqube
           from:
             kind: DockerImage
-            name: 'openshift/sonarqube:${SONARQUBE_VERSION}'
+            name: 'bcgovimages/sonarqube:${SONARQUBE_VERSION}'
           importPolicy: {}
           name: '${SONARQUBE_VERSION}'
   - apiVersion: v1
@@ -175,7 +175,6 @@ objects:
             from:
               kind: ImageStreamTag
               name: 'sonarqube:${SONARQUBE_VERSION}'
-              namespace: openshift
           type: ImageChange
   - apiVersion: v1
     kind: Service
@@ -319,7 +318,7 @@ parameters:
   - displayName: SonarQube version
     name: SONARQUBE_VERSION
     required: true
-    value: '6.7.1'
+    value: '6.7.5'
   - description: Password for SonarQube Server PostgreSQL backend
     displayName: SonarQube's PostgreSQL Password
     from: '[a-zA-Z0-9]{16}'
