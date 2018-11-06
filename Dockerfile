@@ -39,8 +39,16 @@ RUN set -x \
     && rm sonarqube.zip* \
     && rm -rf $SONARQUBE_HOME/bin/*
 
+# ================================================================================================================================================================================
 # Add Plug-in(s)
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# sonar-zap-plugin
+# Version 1.1.2 of the plug-in requires LTS version 6.7.5 of SonarQube, and is not compatible with version 7.x yet.
+# - https://github.com/Coveros/zap-sonar-plugin/issues/40
+# - https://github.com/Coveros/zap-sonar-plugin/pull/41
 ADD https://github.com/Coveros/zap-sonar-plugin/releases/download/sonar-zap-plugin-$SONAR_ZAP_PLUGIN_VERSION/sonar-zap-plugin-$SONAR_ZAP_PLUGIN_VERSION.jar $SONARQUBE_PLUGIN_DIR
+# ================================================================================================================================================================================
 
 WORKDIR $SONARQUBE_HOME
 COPY run.sh $SONARQUBE_HOME/bin/
