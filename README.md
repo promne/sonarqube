@@ -84,7 +84,7 @@ You can now browse your project report on the SonarQube server site.  To find th
 ### Code Coverage Results
 Now that you have static scanning, you'll probably notice your code coverage results are at 0% since no unit tests are being executed during the scan.  You'll likely what to integrate unit tests into the scans so you get code coverage metrics to help you determine how well you are testing your code.  **As you journey down this road, please contribute your experience back to this project to make it better for the whole community.**
 
-### Integrate OWASP ZAP Security Vulnerability Scanningin SonarQube
+### Integrate OWASP ZAP Security Vulnerability Scanning into SonarQube
 To make the results of your ZAP security vulnerability scanning accessible and therefore more actionable, you can integrate the scan results into a SonarQube project report.  To accomplish this you can use the [ZAP Plugin for SonarQube](https://github.com/Coveros/zap-sonar-plugin), which is bundled in the `bcgovimages/sonarqube:6.7.5` image.
 
 The [SonarQube-Integrated-ZapScan-Jenkinsfile](./jenkins/SonarQube-Integrated-ZapScan-Jenkinsfile) example shows you how to utilize ZAP and the plug-in together to perform a ZAP security vulnerability scan on your application, and then publish the report with SonarQube.
