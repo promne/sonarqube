@@ -116,6 +116,7 @@ For SonarQube versions <7.1 you will need to use the [SVG Badges](https://github
 # Tips and Tricks
 
 - [Troubleshooting Jenkins Slave Startup Issues](./docs/troubleshooting-jenkins-slave-startup-issues.md)
+- [Upgrading with Bundled Plugins](./docs/upgrading-with-bundled-plugins.md)
 
 # Getting Help or Reporting an Issue
 To report bugs/issues/feature requests, please file an [issue](../../issues).
