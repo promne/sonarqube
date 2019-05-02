@@ -291,12 +291,11 @@ objects:
     metadata:
       labels:
         app: sonarqube
-      annotations:
-        volume.beta.kubernetes.io/storage-class: gluster-file
       name: postgresql-sonarqube-data
     spec:
       accessModes:
         - ReadWriteOnce
+      storageClassName: ${POSTGRESQL_PERSISTENT_VOLUME_CLASS}
       resources:
         requests:
           storage: '${POSTGRESQL_VOLUME_CAPACITY}'
@@ -305,12 +304,11 @@ objects:
     metadata:
       labels:
         app: sonarqube
-      annotations:
-        volume.beta.kubernetes.io/storage-class: gluster-file
       name: sonarqube-data
     spec:
       accessModes:
         - ReadWriteOnce
+      storageClassName: ${SONAR_PERSISTENT_VOLUME_CLASS}
       resources:
         requests:
           storage: '${SONAR_VOLUME_CAPACITY}'
@@ -341,4 +339,14 @@ parameters:
     name: SONAR_VOLUME_CAPACITY
     required: true
     value: 5Gi
+  - name: SONAR_PERSISTENT_VOLUME_CLASS
+    displayName: Persistent Volume Class name
+    description: The class of the volume; gluster-file, gluster-block, gluster-file-db
+    required: false
+    value: gluster-file
+  - name: POSTGRESQL_PERSISTENT_VOLUME_CLASS
+    displayName: Persistent Volume Class name
+    description: The class of the volume; gluster-file, gluster-block, gluster-file-db
+    required: false
+    value: gluster-file-db
    
