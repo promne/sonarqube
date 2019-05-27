@@ -1,3 +1,22 @@
+---
+title: SonarQube on OpenShift
+description: Documentation and resources (complete with examples) required to deploy a SonarQube server instance into a BCGov OpenShift pathfinder environment, and integrate SonarQube and ZAP scanning into your Jenkins pipeline.
+author: WadeBarnes
+resourceType: Components
+personas: 
+  - Developer
+  - Product Owner
+  - Designer
+labels:
+  - sonarqube
+  - zap
+  - scan
+  - test
+  - code
+  - quality
+  - vulnerability
+  - coverage
+---
 # SonarQube on OpenShift
 This repository contains all of the resources required to deploy a SonarQube server instance into a BCGov OpenShift pathfinder environment, and integrate SonarQube scanning into your Jenkins pipeline.
 
