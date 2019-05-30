@@ -116,9 +116,17 @@ The example can be used as a starting point for your project.
   - Start the pipeline manually and ensure it runs through to completion successfully.
   - Browse the project report on the SonarQube server.
 
+__Please Note:__ the first time running the ZAP pipeline, the execution will likely fail due to missing script execution permissions on Jenkins. The ZAP pipeline logs will provide a message with a link to the Jenkins admin dashboard page where the script permissions can be added (something like `https://your-jenkins-instance.pathfinder.gov.bc.ca/scriptApproval/`). Just click the "approve" button on the pending signature to add it to the approved list and repeat the process (run the pipeline, wait for it to fail and approve the next required script) .
+The script signatures that will require approval before the pipeline can run successfully are:
+```
+method hudson.plugins.git.GitSCM getBranches
+method hudson.plugins.git.GitSCM getUserRemoteConfigs
+method hudson.plugins.git.GitSCMBackwardCompatibility getExtensions
+```
+
 Now that you have a dedicated pipeline for running ZAP scans on your deployed application, you'll want to integrate it into your build and deployment pipeline.  The [ZapScan-Integration-Example-Jenkinsfile](./jenkins/ZapScan-Integration-Example-Jenkinsfile) provides an example of how to accomplish this while keeping things clean and separated.  The example uses the [OpenShift Jenkins Pipeline DSL](https://github.com/openshift/jenkins-client-plugin) syntax.  There are two parts of the example you'll want to focus on; the deployment section, and the ZAP Scanning section.  The deployment section waits for the application deployment to complete before allowing the execution to continue.  This ensures you are running your scan following a successful deployment.  The ZAP Scanning section triggers the independent `zap-pipeline` (created above) which scans your application and publishes the report.  The example does not wait for the pipeline to complete, but the example(s) could easily be modified to wait for feedback and perform some additional operations based on the results of the scan.
 
-Additional details regarding the `openshift/jenkins-slave-zap` image can be found here; [OWASP ZAP Security Vulnerability Scanning](https://github.com/BCDevOps/openshift-components/tree/master/cicd/zap)
+Additional details regarding the `openshift/jenkins-slave-zap` image can be found here; [OWASP ZAP Security Vulnerability Scanning](https://github.com/BCDevOps/openshift-components/tree/master/cicd/jenkins-slave-zap)
 
 ### Quality Badges
 Now that you are scanning your code you can publish the summary of the results using badges in your project's top-level ReadMe file.
