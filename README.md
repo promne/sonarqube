@@ -18,7 +18,7 @@ labels:
   - coverage
 ---
 # SonarQube on OpenShift
-This repository contains all of the resources required to deploy a SonarQube server instance into a BCGov OpenShift pathfinder environment, and integrate SonarQube scanning into your Jenkins pipeline.
+The [sonarqube](https://github.com/BCDevOps/sonarqube) repository contains all of the resources required to deploy a SonarQube server instance into a BCGov OpenShift pathfinder environment, and integrate SonarQube scanning into your Jenkins pipeline.
 
 This work was inspired by the OpenShift Demos SonarQube for OpenShift:
 https://github.com/OpenShiftDemos/sonarqube-openshift-docker
