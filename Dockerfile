@@ -9,7 +9,7 @@ MAINTAINER Emiliano Sune (emiliano.sune@gmail.com)
 # Define Plug-in Versions
 ARG SONAR_ZAP_PLUGIN_VERSION=1.2.0
 
-ENV SONAR_VERSION=7.9 \
+ENV SONAR_VERSION=7.9.1 \
   SONARQUBE_HOME=/opt/sonarqube \
   SONARQUBE_JDBC_USERNAME=sonar \
   SONARQUBE_JDBC_PASSWORD=sonar \
