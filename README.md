@@ -98,7 +98,7 @@ An example Jenkins file [SonarQube-StaticScan-Jenkinsfile](./jenkins/SonarQube-S
 ## Congratulations - You have integrated static code scanning into your project
 You can now browse your project report on the SonarQube server site.  To find the link, browse to the overview of your `tools` project using the OpenShift console and click on the URL for the **SonarQube Application**.
 
-## Next Steps:
+## Next Steps
 
 ### Code Coverage Results
 Now that you have static scanning, you'll probably notice your code coverage results are at 0% since no unit tests are being executed during the scan.  You'll likely what to integrate unit tests into the scans so you get code coverage metrics to help you determine how well you are testing your code.  **As you journey down this road, please contribute your experience back to this project to make it better for the whole community.**
@@ -144,6 +144,7 @@ For SonarQube versions <7.1 you will need to use the [SVG Badges](https://github
 
 - [Troubleshooting Jenkins Slave Startup Issues](./docs/troubleshooting-jenkins-slave-startup-issues.md)
 - [Upgrading with Bundled Plugins](./docs/upgrading-with-bundled-plugins.md)
+- [Upgrading Plugins Manually](./docs/upgrading-plugins-manually.md)
 - [Upgrading between LTS versions](https://docs.sonarqube.org/latest/setup/upgrading/)
 
 # Getting Help or Reporting an Issue

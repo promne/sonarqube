@@ -15,7 +15,7 @@ ENV SONAR_VERSION=7.9.1 \
   SONARQUBE_JDBC_PASSWORD=sonar \
   SONARQUBE_JDBC_URL=
 
-ENV SONARQUBE_PLUGIN_DIR=$SONARQUBE_HOME/lib/bundled-plugins
+ENV SONARQUBE_PLUGIN_DIR=$SONARQUBE_HOME/extensions/plugins
 
 ENV SUMMARY="SonarQube for bcgov OpenShift" \
   DESCRIPTION="This image creates the SonarQube image for use at bcgov/OpenShift"
