@@ -137,6 +137,14 @@ For SonarQube versions <7.1 you will need to use the [SVG Badges](https://github
 
 [TheOrgBook](https://github.com/bcgov/TheOrgBook) provides an example of the concepts outlined here, and demonstrates the use of static code scanning, ZAP report integration, and quality badges.
 
+# Upgrading Between LTS Versions
+
+When upgrading between LTS versions of SonarQube (as an example, going from 6.7.x to 7.9.x) it will be necessary to first upgrade to all the intermediary LTS versions.
+Even doing so, it is possible that the upgrade will cause the existing reports to be lost, therefore forcing the scan history to start over from a clean state.
+
+For more information on this topic, please refer to the [upgrading SonarQube docs](https://docs.sonarqube.org/latest/setup/upgrading/).
+
+
 # References
 - [SonarQube](https://www.sonarqube.org/)
 
@@ -145,7 +153,6 @@ For SonarQube versions <7.1 you will need to use the [SVG Badges](https://github
 - [Troubleshooting Jenkins Slave Startup Issues](./docs/troubleshooting-jenkins-slave-startup-issues.md)
 - [Upgrading with Bundled Plugins](./docs/upgrading-with-bundled-plugins.md)
 - [Upgrading Plugins Manually](./docs/upgrading-plugins-manually.md)
-- [Upgrading between LTS versions](./docs/upgrading-between-lts-versions.md)
 
 # Getting Help or Reporting an Issue
 To report bugs/issues/feature requests, please file an [issue](../../issues).
