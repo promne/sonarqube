@@ -176,7 +176,7 @@ Key benefits of SonarCloud are:
 3. Sign up for SonarCloud with your github Account
 4. Add a `.sonarcloud.properties` file to your project root
 
-Example:
+**Example:**
 
 ```
 sonar.projectName=ppr
