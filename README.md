@@ -39,15 +39,17 @@ SonarQube server images are now available on DockerHub:
 - [bcgovimages/sonarqube](https://hub.docker.com/r/bcgovimages/sonarqube/)
 
 ## Building the SonarQube Server Image
-The SonarQube server image (`bcgovimages/sonarqube:8`) is already available on DockerHub, so **you do not have to repeat this step** unless you are building a customized or updated version of the SonarQube Server.
+
+The SonarQube server image (`bcgovimages/sonarqube:8.2`) is already available on DockerHub, so **you do not have to repeat this step** unless you are building a customized or updated version of the SonarQube Server.
 
 Logon to your `tools` project and run the following command:
 
 ```bash
-oc new-build https://github.com/BCDevOps/sonarqube --name=sonarqube --to=bcgov-sonarqube:8.2
+oc new-build https://github.com/BCDevOps/sonarqube --strategy=docker --name=sonarqube --to=sonarqube:8.2
 ```
 
 ## Deploy on OpenShift
+
 The [sonarqube-postgresql-template](./sonarqube-postgresql-template.yaml) has been provided to allow you to quickly and easily deploy a fully functional instance of the SonarQube server, complete with persistent storage, into your `tools` project.  The template will create all of the necessary resources for you.
 
 Logon to your `tools` project and run the following command:
