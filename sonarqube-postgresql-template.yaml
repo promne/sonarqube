@@ -44,9 +44,9 @@ objects:
     data:
       username: YWRtaW4=
     kind: Secret
-    labels:
-      app: sonarqube
     metadata:
+      labels:
+        app: sonarqube
       annotations:
         template.openshift.io/base64-expose-password: "{.data['password']}"
       name: sonarqube-admin-password
