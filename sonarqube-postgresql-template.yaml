@@ -54,6 +54,16 @@ objects:
       password: ${SONARQUBE_ADMIN_PASSWORD}
     type: kubernetes.io/basic-auth
   - apiVersion: v1
+    kind: Secret
+    metadata:
+      labels:
+        app: sonarqube
+      annotations:
+        template.openshift.io/expose-password: '{.data[''password'']}'
+      name: postgresql-sonar-password
+    stringData:
+      password: ${POSTGRESQL_PASSWORD}
+  - apiVersion: v1
     kind: ImageStream
     metadata:
       labels:
@@ -102,13 +112,16 @@ objects:
           containers:
             - env:
                 - name: SONARQUBE_JDBC_PASSWORD
-                  value: "${POSTGRESQL_PASSWORD}"
+                  valueFrom:
+                    secretKeyRef:
+                      key: password
+                      name: postgresql-sonar-password
                 - name: SONARQUBE_JDBC_URL
                   value: "jdbc:postgresql://postgresql-sonarqube/sonar"
                 - name: SONARQUBE_JDBC_USERNAME
                   value: sonar
                 - name: SONAR_FORCEAUTHENTICATION
-                  value: true
+                  value: "true"
               volumeMounts:
                 - mountPath: /opt/sonarqube/data
                   name: sonar-data
@@ -223,7 +236,10 @@ objects:
                 - name: POSTGRESQL_USER
                   value: sonar
                 - name: POSTGRESQL_PASSWORD
-                  value: "${POSTGRESQL_PASSWORD}"
+                  valueFrom:
+                    secretKeyRef:
+                      key: password
+                      name: postgresql-sonar-password
                 - name: POSTGRESQL_DATABASE
                   value: sonar
               image: " "
