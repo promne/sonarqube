@@ -107,6 +107,8 @@ objects:
                   value: "jdbc:postgresql://postgresql-sonarqube/sonar"
                 - name: SONARQUBE_JDBC_USERNAME
                   value: sonar
+                - name: SONAR_FORCEAUTHENTICATION
+                  value: true
               volumeMounts:
                 - mountPath: /opt/sonarqube/data
                   name: sonar-data
