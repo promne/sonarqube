@@ -198,7 +198,7 @@ sonar.sourceEncoding=UTF-8
 #sonar.cpd.exclusions=
 ```
 
-5. Ask the Developer Experience group to add your project (bcgov is the owner of your project and Dev.Experience manages the bcgov account )
+5. Ask the Developer Experience group to add your project (bcgov is the owner of your project and Dev.Experience manages the bcgov account) via the SonarCloud Request issue type [BCDevOps/devops-requests/issues](https://github.com/BCDevOps/devops-requests/issues)
 6. Developer Experience will add the identified person as the admin for your project (you can change that later)
 7. Then go to https://sonarcloud.io/organizations/bcgov-sonarcloud/projects
 8. Find your project and click on "Configure analysis" button
