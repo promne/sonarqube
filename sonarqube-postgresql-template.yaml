@@ -44,15 +44,25 @@ objects:
     data:
       username: YWRtaW4=
     kind: Secret
-    labels:
-      app: sonarqube
     metadata:
+      labels:
+        app: sonarqube
       annotations:
         template.openshift.io/base64-expose-password: "{.data['password']}"
       name: sonarqube-admin-password
     stringData:
       password: ${SONARQUBE_ADMIN_PASSWORD}
     type: kubernetes.io/basic-auth
+  - apiVersion: v1
+    kind: Secret
+    metadata:
+      labels:
+        app: sonarqube
+      annotations:
+        template.openshift.io/expose-password: '{.data[''password'']}'
+      name: postgresql-sonar-password
+    stringData:
+      password: ${POSTGRESQL_PASSWORD}
   - apiVersion: v1
     kind: ImageStream
     metadata:
@@ -102,11 +112,16 @@ objects:
           containers:
             - env:
                 - name: SONARQUBE_JDBC_PASSWORD
-                  value: "${POSTGRESQL_PASSWORD}"
+                  valueFrom:
+                    secretKeyRef:
+                      key: password
+                      name: postgresql-sonar-password
                 - name: SONARQUBE_JDBC_URL
                   value: "jdbc:postgresql://postgresql-sonarqube/sonar"
                 - name: SONARQUBE_JDBC_USERNAME
                   value: sonar
+                - name: SONAR_FORCEAUTHENTICATION
+                  value: "true"
               volumeMounts:
                 - mountPath: /opt/sonarqube/data
                   name: sonar-data
@@ -221,7 +236,10 @@ objects:
                 - name: POSTGRESQL_USER
                   value: sonar
                 - name: POSTGRESQL_PASSWORD
-                  value: "${POSTGRESQL_PASSWORD}"
+                  valueFrom:
+                    secretKeyRef:
+                      key: password
+                      name: postgresql-sonar-password
                 - name: POSTGRESQL_DATABASE
                   value: sonar
               image: " "
@@ -316,7 +334,7 @@ parameters:
   - displayName: SonarQube version
     name: SONARQUBE_VERSION
     required: true
-    value: "7.9.1"
+    value: "8.2"
   - description: Password for SonarQube Server PostgreSQL backend
     displayName: SonarQube's PostgreSQL Password
     from: "[a-zA-Z0-9]{16}"
@@ -325,7 +343,7 @@ parameters:
     required: true
   - description: Password for SonarQube Admin
     displayName: SonarQube's Admin Password
-    from: "[a-zA-Z0-9]{8}"
+    from: "[a-zA-Z0-9]{16}"
     generate: expression
     name: SONARQUBE_ADMIN_PASSWORD
     required: true

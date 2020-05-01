@@ -45,19 +45,25 @@ SonarQube server images are now available on DockerHub:
 
 ### Building the SonarQube Server Image
 
-The SonarQube server image (`bcgovimages/sonarqube:7.9.1`) is already available on DockerHub, so **you do not have to repeat this step** unless you are building a customized or updated version of the SonarQube Server.
+
+The SonarQube server image (`bcgovimages/sonarqube:8.2`) is already available on DockerHub, so **you do not have to repeat this step** unless you are building a customized or updated version of the SonarQube Server.
 
 Logon to your `tools` project and run the following command:
 
-    oc new-build https://github.com/BCDevOps/sonarqube --name=sonarqube --to=sonarqube:7.9.1
+```bash
+oc new-build https://github.com/BCDevOps/sonarqube --strategy=docker --name=sonarqube --to=sonarqube:8.2
+```
 
 ### Deploy on OpenShift
+
 
 The [sonarqube-postgresql-template](./sonarqube-postgresql-template.yaml) has been provided to allow you to quickly and easily deploy a fully functional instance of the SonarQube server, complete with persistent storage, into your `tools` project. The template will create all of the necessary resources for you.
 
 Logon to your `tools` project and run the following command:
 
-    oc new-app -f sonarqube-postgresql-template.yaml --param=SONARQUBE_VERSION=7.9.1
+```bash
+oc new-app -f sonarqube-postgresql-template.yaml --param=SONARQUBE_VERSION=8.2
+```
 
 ### Change the Default Admin Password
 
@@ -65,7 +71,9 @@ When the SonarQube server is first deployed it is using a default `admin` passwo
 
 Logon to your `tools` project and run the following command from the [provisioning](./provisioning) directory:
 
-    updatesqadminpw.sh
+```bash
+updatesqadminpw.sh
+```
 
 To login to your SonarQube server as admin, browse to the **sonarqube-admin-password** secret in your OpenShift `tools` project, reveal the password and use it to login.
 
@@ -118,9 +126,7 @@ You can now browse your project report on the SonarQube server site. To find the
 Now that you have static scanning, you'll probably notice your code coverage results are at 0% since no unit tests are being executed during the scan. You'll likely what to integrate unit tests into the scans so you get code coverage metrics to help you determine how well you are testing your code. **As you journey down this road, please contribute your experience back to this project to make it better for the whole community.**
 
 ### Integrate OWASP ZAP Security Vulnerability Scanning into SonarQube
-
-To make the results of your ZAP security vulnerability scanning accessible and therefore more actionable, you can integrate the scan results into a SonarQube project report. To accomplish this you can use the [ZAP Plugin for SonarQube](https://github.com/Coveros/zap-sonar-plugin), which is bundled in the `bcgovimages/sonarqube:7.9.1` image.
-
+To make the results of your ZAP security vulnerability scanning accessible and therefore more actionable, you can integrate the scan results into a SonarQube project report.  To accomplish this you can use the [ZAP Plugin for SonarQube](https://github.com/Coveros/zap-sonar-plugin), which is bundled in the `bcgovimages/sonarqube:8.2` image.
 The [SonarQube-Integrated-ZapScan-Jenkinsfile](./jenkins/SonarQube-Integrated-ZapScan-Jenkinsfile) example shows you how to utilize ZAP and the plug-in together to perform a ZAP security vulnerability scan on your application, and then publish the report with SonarQube.
 
 The example can be used as a starting point for your project.
