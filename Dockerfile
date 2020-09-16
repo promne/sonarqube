@@ -30,6 +30,7 @@ USER 0
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # sonar-zap-plugin - https://github.com/Coveros/zap-sonar-plugin
+RUN apk add curl
 RUN set -x \
   && cd "$SONARQUBE_PLUGIN_DIR" \
   && curl -o "sonar-zap-plugin-$SONAR_ZAP_PLUGIN_VERSION.jar" -fsSL "https://github.com/Coveros/zap-sonar-plugin/releases/download/sonar-zap-plugin-$SONAR_ZAP_PLUGIN_VERSION/sonar-zap-plugin-$SONAR_ZAP_PLUGIN_VERSION.jar"
